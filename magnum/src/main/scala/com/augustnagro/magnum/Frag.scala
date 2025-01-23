@@ -42,4 +42,15 @@ class Frag(
   ): Returning[E] =
     Returning(this, reader, colNames.columnNames.map(_.queryRepr))
 
+  /** Strips leading whitespace characters followed by a vertical bar (`|`) from
+    * the beginning of each line in this {@link Frag}.
+    *
+    * This method is useful when you want to format SQL strings in a more
+    * readable multi-line way within your code.
+    *
+    * @return a new {@link Frag} instance with the modified `sqlString`.
+    */
+  def stripMargin: Frag =
+    Frag(sqlString.stripMargin, params, writer)
+
 end Frag
